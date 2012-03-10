@@ -91,7 +91,7 @@ void BeagleMain::Sync(int type){
         ///check database for previous radio stations
         Radio = rDB.RadioFill(&radSize);
         // read preferences prior to delete
-        pref.readDB();
+   //     pref.readDB();
         pref.deleteDB(pref.getSQL().c_str());
         ///
         pref.createDB();
@@ -437,7 +437,7 @@ void BeagleMain::on_PAUSE_but_clicked()
 void BeagleMain::on_actionPreferences_2_activated()
 {
     pref.readDB();
-    pref= prefDg.setPref(pref);
+    prefDg.setPref(pref);
     prefDg.show();
     if (prefDg.exec()==QDialog::Accepted) {
         pref = prefDg.getPref();

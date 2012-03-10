@@ -129,7 +129,7 @@ void preferences::OpenDB(){
 
 /// read preference table from sql
 void preferences::readDB(){
-
+    OpenDB();
     int count = 0;
     if(db2.open()){
     QSqlQuery query(db2);
