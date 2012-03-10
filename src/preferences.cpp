@@ -168,7 +168,7 @@ void preferences::writeDB(){
        << USER << "','" << PASS << "','" << SERVER << "','" << PORT  << "','" << TABLE  << "','" << DBlocation << "','" << PLAYLISTDIR << "')";
 
     str2 = os.str();
-    cout << str2 << endl;
+//    cout << str2 << endl;
     writeMe(str2);
 }
 
