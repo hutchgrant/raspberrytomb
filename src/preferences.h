@@ -28,7 +28,7 @@
 #include <QMainWindow>
 #include <QDir>
 #include <QtSql>
-#define TEMPCACHE "/.BeagleTomb/cache/dbcache.txt"
+#define TEMPCACHE "/.RaspberryTomb/cache/dbcache.txt"
 #include <stdio.h>
 #include <iostream>
 #include <string>
@@ -44,8 +44,9 @@ public:
     preferences();
     preferences(const preferences& src);
     preferences(string DFLTQRY);
-    QSqlDatabase OpenDB();
-    void writeDB( );
+    void OpenDB();
+    QSqlDatabase db2;
+    void writeDB();
     void readDB();
     void writeMe(string qry);
     void deleteDB(const char *dbLocation);

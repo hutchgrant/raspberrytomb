@@ -25,7 +25,7 @@ playlistobj::playlistobj()
     initPL();
     /// set temp defaults later sync from db
     setFileName("newplaylist.pl");
-    setFileLocation("/.BeagleTomb/playlist/");
+    setFileLocation("/.RaspberryTomb/playlist/");
     playlistOpen = false;
     playlistCount = 0;
     pl_obj_count = 0;
@@ -190,7 +190,6 @@ playlistobj& playlistobj::operator=(const playlistobj& src)
     return *this;
 }
 int playlistobj::close(){
-     //           fclose(fp);
         return 1;
 }
 

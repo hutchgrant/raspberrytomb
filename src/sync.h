@@ -40,8 +40,7 @@
 #include "radioObj.h"
 #include "mysqlconn.h"
 
-#define TEMPSYNCPREF "/.BeagleTomb/BTmedia.db"
-#define createSQL "/opt/extras.ubuntu.com/beagletomb/src/createSQL.sql"
+#define TEMPSYNCPREF "/.RaspberryTomb/BTmedia.db"
 
 using namespace std;
 
