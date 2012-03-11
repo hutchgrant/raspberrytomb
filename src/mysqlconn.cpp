@@ -97,7 +97,7 @@ songObj* mysqlconn::connectAlbum(songObj* Artist, int *artSize, songObj* Album, 
          db.close();
         }
         else{
-            cout << "error couldn't connect to album in mysql" << endl;
+            cout << "error couldn't connect to mysql" << endl;
         }
     }
     return Album;
@@ -195,7 +195,7 @@ songObj* mysqlconn::connectArtist(songObj* Artist, int artMenu, int *mySize){
             artMenu);
 
     if(!db.open()){
-        cout << "error couldn't connect to artist in mysql" << endl;
+        cout << "error couldn't connect to mysql" << endl;
     }
     else{
     QSqlQuery query(db);
@@ -295,7 +295,7 @@ songObj* mysqlconn::connectVideo(songObj* VidDir, int *vidDirSize, songObj* Vide
         db.close();
         }
         else{
-            cout << "error couldn't connect to video in mysql" << endl;
+            cout << "error couldn't to mysql" << endl;
               Myexit = true;
         }
     }
@@ -485,7 +485,7 @@ int mysqlconn::connectArtMenu() {
         db.close();
         }
         else{
-            cout << "error couldn't connect to art menu in mysql" << endl;
+            cout << "error couldn't connect to mysql" << endl;
               Myexit = true;
         }
     }
