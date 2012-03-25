@@ -1,7 +1,9 @@
 #!/bin/bash
-chmod -R 777 /opt/extras.ubuntu.com/beagletomb
-cd /opt/extras.ubuntu.com/beagletomb
+mkdir /opt/raspberrytomb/
+chmod 777 /opt/raspberrytomb
+
+cd /opt/raspberrytomb
 qmake
 make
 
-ln -fs /opt/extras.ubuntu.com/beagletomb/beagletomb /usr/bin/beagletomb
+ln -fs /opt/raspberrytomb/raspberrytomb /usr/bin/beagletomb

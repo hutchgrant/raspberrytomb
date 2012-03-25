@@ -19,7 +19,7 @@ make
 ---------
 INSTALL:
 ---------
-su -c 'mkdir -R /opt/raspberrytomb/release'
+su -c 'mkdir /opt/raspberrytomb/'
 make install
 
 
@@ -31,7 +31,11 @@ DEPENDENCIES:
 -------------
 su -c 'yum install mediatomb mysql-server'
 
-*write down mysql password
+{{start mysql server}}
+# service mysqld start
+{{start mysql daemon every start}}
+# chkconfig --level 2345 mysqld on
+$ mysqladmin -u root 
 
 run mediatomb once:
 $ mediatomb
@@ -41,7 +45,10 @@ $ pkill mediatomb
 INSTALL/CONFIGURE:
 ------------------
 Install and configure with this script:
-$ su -c '~/raspberrytomb/docs/install.sh'
+$ su -c '/opt/raspberrytomb/docs/install.sh'
+
+From the installer enter your server's IP.
+You will need to enter a  new username and password that you will also enter your raspberrytomb client preference menu.
 
 Make sure you're using a static IP on the host machine.
 
