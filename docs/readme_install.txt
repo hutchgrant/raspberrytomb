@@ -31,11 +31,11 @@ DEPENDENCIES:
 -------------
 su -c 'yum install mediatomb mysql-server'
 
-{{start mysql server}}
+===start mysql server===
 # service mysqld start
-{{start mysql daemon every start}}
+
+===start mysql daemon every start (Optional) ===
 # chkconfig --level 2345 mysqld on
-$ mysqladmin -u root 
 
 run mediatomb once:
 $ mediatomb
