@@ -1,12 +1,11 @@
 
 #!/bin/bash
 
-pkg1="mediatomb"
-pkg2="mysql"
-pkg2Install="mysql-server"
-pkg3="mplayer"
-dbusr="mediatomb"
+dbuser="mediatomb"
 dbpass="mediatomb"
+
+DFLT_MT="~/.mediatomb/config.xml"
+DFLT_SQL="/etc/mysql/my.cnf"
 
 UI_TO='ui enabled="yes"'
 UI_FROM='ui enabled="no"'
@@ -15,16 +14,15 @@ SQL_FROM='<mysql enabled="no"'
 SQLite_TO='sqlite3 enabled="no"'
 SQLite_FROM='sqlite3 enabled="yes"'
 
-file='./tmp/config.xml'
-TFILE='./tmp/config2.xml'
-file2='./tmp/mysqlConf'
-TFILE2='./tmp/my.cnf'
+file='/tmp/BT1/config.xml'
+TFILE='/tmp/BT1/config2.xml'
+SQL_file='/tmp/BT1/mysqlConf'
+SQL_fin='/tmp/BT1/my.cnf'
 SQLBind_TO=$HOSTIP
 SQLBind_FROM='127.0.0.1'
 exitMain=0
 
-file="/etc/mediatomb/config3.xml"
-TFILE="config4.xml"
+FinFile="config4.xml"
 
 crtusr2="create user '$dbuser'@'localhost' identified by '$dbuser';"
 crtusr="create user '$dbuser'@'%' identified by '$dbuser';"
@@ -87,42 +85,44 @@ eof
 echo " Filling database....."
 mysql mediatomb -u mediatomb --password=$dbpass < /usr/share/mediatomb/mysql.sql
 
-echo "  Install Complete "
-read fin
+
 ;;
 3)
 # sh configure.sh
-mkdir -p ./tmp/BT/
-cp ~/.mediatomb/config.xml ./tmp/config2.xml
+mkdir -p /tmp/BT/
+mkdir -p /tmp/BT1/
+chmod 777 /tmp/BT1/
+chmod 777 /tmp/BT/
+cp ~/.mediatomb/config.xml $TFILE
 
-sudo sed "s/$UI_FROM/$UI_TO/g" "$TFILE" > $file
-sudo sed "s/$SQL_FROM/$SQL_TO/g" "$file" > $TFILE
-sudo sed "s/$SQLite_FROM/$SQLite_TO/g" "$TFILE" > $file
+sed "s/$UI_FROM/$UI_TO/g" "$TFILE" > $file
+sed "s/$SQL_FROM/$SQL_TO/g" "$file" > $TFILE
+sed "s/$SQLite_FROM/$SQLite_TO/g" "$TFILE" > $file
 
 
-sed '21q' $file > ./tmp/apd/atestout.txt 
-sed -e :a -e '$q;N;127,$D;ba' $file > ./tmp/BT/dtestoutput.txt
-echo "<host>"$HOSTIP"</host>" > ./tmp/BT/btestout.txt
-echo "<username>$dbuser</username>" > ./tmp/BT/ctestout.txt
-echo "<password>$dbpass</password>" >> ./tmp/BT/ctestout.txt
-cat ./tmp/BT/* > $TFILE
+sed '21q' $file > /tmp/BT/atestout.txt 
+sed -e :a -e '$q;N;127,$D;ba' $file > /tmp/BT/dtestoutput.txt
+echo "<host>"$HOSTIP"</host>" > /tmp/BT/btestout.txt
+echo "<username>"$dbuser"</username>" > /tmp/BT/ctestout.txt
+echo "<password>"$dbpass"</password>" >> /tmp/BT/ctestout.txt
+cat /tmp/BT/* > $FinFile
 
-cp $TFILE /etc/mediatomb/config.xml
-cp $TFILE ~/.mediatomb/config.xml
+cp $FinFile ~/.mediatomb/config.xml
 
-sudo chown mediatomb:mediatomb /etc/mediatomb/config.xml
 sudo chown mediatomb:mediatomb ~/.mediatomb/config.xml
 
-cp /etc/mysql/my.cnf ./tmp/mysqlConf
+cp $DFLT_SQL $SQL_file
 
-sed "s/$SQLBind_FROM/$SQLBind_TO/g" "$file2" > $TFILE2
+sed "s/$SQLBind_FROM/$SQLBind_TO/g" "$SQL_file" > $SQL_fin
 
-cp -f $TFILE2 /etc/mysql/my.cnf
+cp -f $SQL_fin $DFLT_SQL
 
-rm -R ./tmp/BT
-rm ./tmp/mysqlConf
-rm ./tmp/config2.xml
-rm ./tmp/config.xml
+# rm -R /tmp/BT
+# rm /tmp/mysqlConf
+# rm /tmp/config2.xml
+# rm /tmp/config.xml
+echo " Install Complete. Hit enter to continue."
+read fin
 ;;
 1)
 
