@@ -10,6 +10,12 @@ su -c 'yum localinstall --nogpgcheck http://download1.rpmfusion.org/free/fedora/
 
 yum install mplayer
 
+cd raspberrytomb
+qmake-qt4
+make
+make install
+
+
 mediatomb server instructions
 
 yum install mediatomb mysql-server

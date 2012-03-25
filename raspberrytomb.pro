@@ -66,3 +66,21 @@ FORMS    += \
 
 RESOURCES += \
     images/BTres.qrc
+
+documentation.files = docs/*
+documentation.path = /usr/local/raspberrytomb/doc
+sources.files = src/*
+sources.path = /opt/raspberrytomb/src
+target.path = /opt/raspberrytomb
+other.files = ./*
+other.path = /opt/raspberrytomb
+INSTALLS += target \
+            sources \
+            documentation \
+            other
+
+DESTDIR = /opt/raspberrytomb
+OBJECTS_DIR = $${DESTDIR}/.obj
+MOC_DIR = $${DESTDIR}/.moc
+RCC_DIR = $${DESTDIR}/.rcc
+UI_DIR = $${DESTDIR}/.ui
