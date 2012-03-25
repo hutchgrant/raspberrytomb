@@ -22,7 +22,7 @@ SQLBind_TO=$HOSTIP
 SQLBind_FROM='127.0.0.1'
 exitMain=0
 
-FinFile="config4.xml"
+FinFile="/tmp/BT1/config4.xml"
 
 crtusr2="create user '$dbuser'@'localhost' identified by '$dbuser';"
 crtusr="create user '$dbuser'@'%' identified by '$dbuser';"
@@ -84,7 +84,8 @@ $crtdb
 eof
 echo " Filling database....."
 mysql mediatomb -u mediatomb --password=$dbpass < /usr/share/mediatomb/mysql.sql
-
+echo " Install Complete. Hit enter return to menu. Next step:  configuration."
+read fin1
 
 ;;
 3)
@@ -117,11 +118,9 @@ sed "s/$SQLBind_FROM/$SQLBind_TO/g" "$SQL_file" > $SQL_fin
 
 cp -f $SQL_fin $DFLT_SQL
 
-# rm -R /tmp/BT
-# rm /tmp/mysqlConf
-# rm /tmp/config2.xml
-# rm /tmp/config.xml
-echo " Install Complete. Hit enter to continue."
+ rm -R /tmp/BT
+ rm -R /tmp/BT1
+echo " Configure Complete. Hit enter to return to menu."
 read fin
 ;;
 1)
